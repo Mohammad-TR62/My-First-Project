@@ -7,3 +7,9 @@ print("--- Tekrar-e Salam ---")
 # چاپ سلام ۳ بار
 for i in range(3):
     print("Salam! (Bar", i + 1, ")")
+
+name = input("Esmet chie? ")
+tedad = int(input("Chand bar esmeto benevisam? "))
+
+for i in range(tedad):
+    print("Salam", name)
