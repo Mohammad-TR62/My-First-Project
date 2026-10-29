@@ -1,0 +1,11 @@
+import tkinter as tk
+root=tk.Tk()
+root.title("Test")
+root.geometry("400x300+100+100")
+lb=tk.Label(root,text="Nam : ",font=("Arial", 30 ,"Bold"))
+lb.pack()
+En=tk.Entry(root)
+En.pack()
+btn=tk.Button(root,text="Save")
+btn.pack()
+root.mainloop()
