@@ -1,7 +1,6 @@
-contacts=[]
 import os  # 👈 این خط رو اول برنامه اضافه کن
 
-contacts = []
+contacts = {}
 while True:
     # 👈 این خط رو اینجا بذار تا هر بار که می‌خواد اسم بپرسه، صفحه رو پاک کنه
     os.system('cls') 
@@ -17,9 +16,17 @@ while True:
             print("Eshterah! Shomare bayad daghighan 11 ragham adadi bashe.")
             continue
             
-        contacts.append((nam + " : " + phone))
+        contacts[nam] = phone
         print("Shomareye" , phone ," Be name " , nam , " Ezafeh shod.") 
         break
         
-print(contacts)      
+print("--- Liste Contacts ---")
+print(contacts)
+
+# حالا از کاربر بپرس کی رو میخواد
+esm = input("Esme ki ro mikhai peyda koni? ")
+if esm in contacts:
+    print("Shomare:", contacts[esm])
+else:
+    print("Peyda nashod!")      
     
