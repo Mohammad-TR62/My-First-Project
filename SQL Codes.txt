@@ -1,0 +1,69 @@
+📜 مرجع سریع دستورات SQL (برای SQLite)
+۱. ساخت جدول (Create)
+
+CREATE TABLE IF NOT EXISTS users (id INTEGER PRIMARY KEY, name TEXT, age INTEGER)
+
+ساخت جدول جدید (اگر وجود نداشته باشه).
+
+INTEGER PRIMARY KEY: یعنی این ستون شماره‌ی منحصر‌به‌فرد (ID) باشه و خودش خودکار زیاد بشه.
+
+TEXT: برای متن (اسم، شماره تلفن و...).
+
+INTEGER: برای اعداد صحیح (سن، قیمت و...).
+
+REAL: برای اعداد اعشاری.
+
+۲. اضافه کردن اطلاعات (Insert)
+
+INSERT INTO users (name, age) VALUES (?, ?)
+
+اضافه کردن یک رکورد جدید. علامت ? برای جلوگیری از هک (SQL Injection) و امنیت بالاست.
+
+۳. خواندن اطلاعات (Select)
+
+SELECT * FROM users
+
+خواندن تمام ستون‌ها و ردیف‌های جدول.
+
+SELECT name, age FROM users
+
+فقط خواندن ستون‌های «اسم» و «سن».
+
+SELECT * FROM users WHERE age > 18
+
+فقط ردیف‌هایی که سنشون بالای ۱۸ هست.
+
+SELECT * FROM users WHERE name = 'Ali'
+
+پیدا کردن کسی که اسمش علی هست.
+
+SELECT * FROM users ORDER BY age DESC
+
+مرتب‌سازی بر اساس سن (نزولی). (ASC برای صعودی).
+
+۴. آپدیت کردن (Update)
+
+UPDATE users SET age = 25 WHERE name = 'Ali'
+
+پیدا کردن علی و تغییر سنش به ۲۵. (⚠️ همیشه حواست به WHERE باشه، وگرنه برای همه تغییر می‌کنه!)
+
+۵. حذف کردن (Delete)
+
+DELETE FROM users WHERE name = 'Ali'
+
+حذف رکورد علی از جدول. (⚠️ بدون WHERE، کل جدول خالی می‌شه!)
+
+DROP TABLE users
+
+کل جدول و ساختارش رو نابود می‌کنه.
+
+۶. شمارش و آمار (Aggregate)
+
+SELECT COUNT(*) FROM users
+
+شمردن تعداد کل رکوردها.
+
+SELECT AVG(age) FROM users
+
+میانگین سنی همه.
+
