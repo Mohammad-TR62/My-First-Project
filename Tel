@@ -1,0 +1,17 @@
+contacts=[]
+while True:
+    nam = input("Nam ra vared kon: ")
+    if nam.upper() == 'EXIT':
+        break
+    while True:
+        phone = input("Shomare ra vared kon (11 ragham): ")
+    
+    # چک کردن طول و اینکه فقط عدد باشه
+        if len(phone) != 11 or not phone.isdigit():
+            print("Eshterah! Shomare bayad daghighan 11 ragham adadi bashe.")
+            continue
+        contacts.append((nam + " : " + phone))
+        print("Shomareye" , phone ," Be name " , nam , " Ezafeh shod.")
+        break 
+print(contacts)       
+    
