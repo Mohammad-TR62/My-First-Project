@@ -14,7 +14,7 @@ def Check(x,ad,a):
         return False
 def Save(x,a):
     file = open("score.txt", "a")
-    file.write(" Hadse : " + str(a) + " = " + str(x) + "\n")
+    file.write(" Hadse " + str(a) + " = " + str(x) + "\n")
     file.close()
 # ==== حلقه اصلی بازی ====
 a=0

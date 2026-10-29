@@ -27,3 +27,15 @@ Adade Dorost = 97
  Hadse : 4 = 95
  Hadse : 5 = 98
  Hadse : 6 = 97
+========================================================================
+Adade Dorost = 21
+ Hadse 1 = 50
+ Hadse 2 = 25
+ Hadse 3 = 10
+ Hadse 4 = 12
+ Hadse 5 = 14
+ Hadse 6 = 16
+ Hadse 7 = 18
+ Hadse 8 = 20
+ Hadse 9 = 22
+ Hadse 10 = 21
