@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <title>ورود به سایت</title>
+        <style>
+        body {
+            background-color: #f0f0f0; /* رنگ پس زمینه */
+            font-family: Tahoma, Arial, sans-serif; /* نوع فونت */
+            text-align: center; /* وسط چین کردن کل متن */
+            margin-top: 50px;
+        }
+        
+        form {
+            background-color: white; /* رنگ کادر فرم */
+            padding: 20px;
+            border-radius: 10px; /* گوشه های گرد */
+            display: inline-block; /* کادر به اندازه محتواش باشه */
+            box-shadow: 0px 0px 10px rgba(0,0,0,0.2); /* سایه */
+        }
+
+        input {
+            padding: 5px;
+            margin-top: 5px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        button {
+            background-color: #4CAF50; /* رنگ دکمه */
+            color: white; /* رنگ متن دکمه */
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        
+        button:hover {
+            background-color: #45a049; /* رنگ دکمه وقتی موس روشه */
+        }
+    </style>
+</head>
+<body>
+
+    <h1>خوش آمدید!</h1>
+    
+    <form action="/login" method="POST">
+    <label>نام:</label><br>
+    <input type="text" name="username" placeholder="اسمت رو بنویس"><br><br>
+
+    <label>رمز:</label><br>
+    <input type="password" name="password"><br><br>
+
+    <button type="submit">ورود</button>
+</form>
+
+</body>
+</html>
