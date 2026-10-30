@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <title>داشبورد</title>
+    <style>
+        body { font-family: Tahoma; text-align: center; margin-top: 50px; background-color: #e0f7fa; }
+        h1 { color: #00796b; }
+        table { margin: 20px auto; border-collapse: collapse; width: 50%; background: white; }
+        th, td { border: 1px solid #ccc; padding: 10px; }
+        th { background-color: #00796b; color: white; }
+    </style>
+</head>
+<body>
+    <h1>پنل کاربری</h1>
+    <p>شما با موفقیت وارد شدید! </p>
+    
+    <h2>لیست کاربران سایت:</h2>
+    <table>
+        <tr>
+            <th>نام کاربری</th>
+            <th>رمز عبور</th>
+        </tr>
+        <!-- اینجا یک حلقه میزنیم تا کاربران رو نشون بده -->
+        {% for user in users %}
+        <tr>
+            <td>{{ user[0] }}</td>
+            <td>{{ user[1] }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+
+    <br>
+    <a href="/">خروج از حساب</a>
+</body>
+</html>
