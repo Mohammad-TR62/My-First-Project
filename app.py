@@ -1,7 +1,8 @@
-from flask import Flask, render_template, request, redirect
+from flask import Flask, render_template, request, redirect, session
 import sqlite3
 
 app = Flask(__name__)
+app.secret_key = 'super_secret_key'
 con = sqlite3.connect("user.db", check_same_thread=False)
 
 # ساخت جدول
@@ -15,6 +16,8 @@ def home():
 # صفحه داشبورد
 @app.route('/dashboard')
 def dashboard():
+    if 'username' not in session:  # 👈 اگه توی حافظه نبود
+        return redirect('/')       # 👈 بفرستش به صفحه لاگین
     cursor = con.execute("SELECT * FROM users")
     users = cursor.fetchall()
     return render_template('dashboard.html', users=users)
@@ -29,6 +32,7 @@ def login():
     c = r.fetchone()
     
     if c:
+        session['username'] = user  
         return redirect('/dashboard')
     else:
         return "نام کاربری یا رمز عبور اشتباه است!"
@@ -37,6 +41,11 @@ def login():
 @app.route('/register')
 def register_page():
     return render_template('register.html')
+
+@app.route('/logout')
+def logout():
+    session.pop('username', None) # پاک کردن اسم از حافظه
+    return redirect('/')
 
 # پردازش فرم ثبت نام
 @app.route('/register', methods=['POST'])
