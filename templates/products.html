@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <title>مدیریت محصولات</title>
+    <style>
+        body { font-family: Tahoma; text-align: center; margin-top: 50px; background-color: #f4f4f4; }
+        h1 { color: #333; }
+        form { background: white; padding: 20px; display: inline-block; border-radius: 8px; box-shadow: 0 0 10px rgba(0,0,0,0.1); margin-bottom: 20px; }
+        input { padding: 8px; margin: 5px; border: 1px solid #ccc; border-radius: 4px; }
+        button { background-color: #008CBA; color: white; padding: 10px 15px; border: none; border-radius: 4px; cursor: pointer; }
+        button:hover { background-color: #005f7f; }
+        table { margin: 20px auto; border-collapse: collapse; width: 60%; background: white; }
+        th, td { border: 1px solid #ddd; padding: 10px; }
+        th { background-color: #333; color: white; }
+        .delete-btn { color: red; text-decoration: none; font-weight: bold; }
+    </style>
+</head>
+<body>
+    <h1>مدیریت محصولات</h1>
+    
+    <!-- فرم اضافه کردن محصول -->
+    <form action="/add_product" method="POST">
+        <input type="text" name="name" placeholder="نام محصول" required>
+        <input type="number" step="0.01" name="price" placeholder="قیمت" required>
+        <button type="submit">افزودن محصول</button>
+    </form>
+
+    <!-- جدول نمایش محصولات -->
+    <table>
+        <tr>
+            <th>ID</th>
+            <th>نام محصول</th>
+            <th>قیمت (تومان)</th>
+            <th>عملیات</th>
+        </tr>
+        {% for product in products %}
+        <tr>
+            <td>{{ product[0] }}</td>
+            <td>{{ product[1] }}</td>
+            <td>{{ product[2] }}</td>
+            <td><a href="/delete_product/{{ product[0] }}" class="delete-btn">حذف</a></td>
+        </tr>
+        {% endfor %}
+    </table>
+
+    <br>
+    <a href="/dashboard">بازگشت به داشبورد</a>
+</body>
+</html>
