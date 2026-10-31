@@ -68,15 +68,3 @@ def register():
     
     return f"کاربر {user} با موفقیت ثبت نام شد! <br><a href='/'>برو به صفحه ورود</a>"
 
-@app.route('/register', methods=['POST'])
-def register():
-    user = request.form.get('username')
-    pass_word = request.form.get('password')
-    
-    con.execute("INSERT INTO users (username, password) VALUES (?, ?)", (user, pass_word))
-    con.commit()
-    
-    return f"کاربر {user} با موفقیت ثبت نام شد! <br><a href='/'>برو به صفحه ورود</a>"
-
-if __name__ == '__main__':
-    app.run(debug=True)
