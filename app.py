@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, redirect, session
+from werkzeug.security import generate_password_hash, check_password_hash
 import sqlite3
 
 app = Flask(__name__)
@@ -27,11 +27,13 @@ def login():
     user = request.form.get('username')
     pass_word = request.form.get('password')
     
-    r = con.execute("SELECT * FROM users WHERE username = ? AND password = ?", (user, pass_word))
+    # 👈 اول فقط بر اساس اسم کاربر رو پیدا کن
+    r = con.execute("SELECT * FROM users WHERE username = ?", (user,))
     c = r.fetchone()
     
-    if c:
-        session['username'] = user # 👈 ذخیره در حافظه
+    # 👈 اگه کاربر پیدا شد و رمزش با هش دیتابیس مطابقت داشت:
+    if c and check_password_hash(c[1], pass_word):
+        session['username'] = user
         return redirect('/dashboard')
     else:
         return "نام کاربری یا رمز عبور اشتباه است!"
@@ -41,9 +43,29 @@ def logout():
     session.pop('username', None) # 👈 پاک کردن از حافظه
     return redirect('/')
 
-@app.route('/register')
-def register_page():
-    return render_template('register.html')
+@app.route('/delete/<username>')
+def delete_user(username):
+    # چک کردن اینکه فقط کاربر لاگین کرده بتونه حذف کنه
+    if 'username' not in session:
+        return redirect('/')
+        
+    con.execute("DELETE FROM users WHERE username = ?", (username,))
+    con.commit()
+    
+    return redirect('/dashboard')
+
+@app.route('/register', methods=['POST'])
+def register():
+    user = request.form.get('username')
+    pass_word = request.form.get('password')
+    
+    # 👈 تبدیل رمز به هش (غیرقابل خوندن)
+    hashed_pass = generate_password_hash(pass_word)
+    
+    con.execute("INSERT INTO users (username, password) VALUES (?, ?)", (user, hashed_pass))
+    con.commit()
+    
+    return f"کاربر {user} با موفقیت ثبت نام شد! <br><a href='/'>برو به صفحه ورود</a>"
 
 @app.route('/register', methods=['POST'])
 def register():
